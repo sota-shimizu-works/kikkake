@@ -1,0 +1,38 @@
+{
+  "name": "@your/template",
+  "private": true,
+  "packageManager": "pnpm@10.15.0",
+  "scripts": {
+    "dev": "turbo run dev --continue",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "typegen": "turbo run typegen",
+    "clean": "turbo run clean && rimraf node_modules .turbo",
+    "mcp:shadcn": "pnpm dlx shadcn@latest mcp --cwd apps/web",
+    "fetch:openapi": "dotenv -e .env.local -e .env -- sh -c 'mkdir -p packages/api-contract && curl -s -H \"apikey: $SUPABASE_ANON_KEY\" -H \"Authorization: Bearer $SUPABASE_ANON_KEY\" -H \"Accept: application/openapi+json\" \"$SUPABASE_URL/rest/v1/\" > packages/api-contract/openapi.json'",
+    "gen:openapi:v3": "npx swagger2openapi -p -o packages/api-contract/openapi.v3.json packages/api-contract/openapi.json",
+    "gen:zod": "npx openapi-zod-client packages/api-contract/openapi.v3.json -o packages/api-contract/zod/index.ts",
+    "gen:ts": "npx openapi-typescript packages/api-contract/openapi.v3.json --output packages/api-contract/types/index.ts",
+    "gen:contracts": "pnpm gen:openapi:v3 && pnpm gen:zod && pnpm gen:ts",
+    "gen:db-types": "mkdir -p packages/db-types && supabase gen types typescript --local > packages/db-types/index.ts",
+    "dump:supabase": "sh scripts/dump-supabase-status.sh",
+    "v0:generate": "dotenv -e .env -- node scripts/v0-generate.js",
+    "gen:all": "pnpm gen:db-types && pnpm dump:supabase && pnpm fetch:openapi && pnpm gen:contracts",
+    "db:link:prod": "dotenv -e .env.prod -e .env -- sh -c 'SUPABASE_ACCESS_TOKEN=\"$SUPABASE_ACCESS_TOKEN_PROD\" supabase link --project-ref \"$SUPABASE_PROJECT_REF_PROD\"'",
+    "db:set-project-ref": "dotenv -e .env.prod -e .env -- node scripts/set-project-ref.js",
+    "db:push:prod": "dotenv -e .env.prod -e .env -- sh -c 'SUPABASE_PROJECT_REF=\"$SUPABASE_PROJECT_REF_PROD\" SUPABASE_ACCESS_TOKEN=\"$SUPABASE_ACCESS_TOKEN_PROD\" node scripts/set-project-ref.js; if [ -z \"$SUPABASE_DB_URL_PROD\" ]; then echo \"SUPABASE_DB_URL_PROD is required for prod push\" && exit 1; fi; SUPABASE_ACCESS_TOKEN=\"$SUPABASE_ACCESS_TOKEN_PROD\" supabase db push --db-url \"$SUPABASE_DB_URL_PROD\" --dns-resolver https'"
+  },
+  
+  "devDependencies": {
+    "@types/node": "^22.18.8",
+    "dotenv-cli": "^10.0.0",
+    "openapi-typescript": "^7.10.1",
+    "openapi-zod-client": "^1.18.3",
+    "rimraf": "^6.0.0",
+    "swagger2openapi": "^7.0.8",
+    "turbo": "^2.0.0",
+    "typescript": "^5.6.0",
+    "zod": "^3.25.76"
+  }
+}

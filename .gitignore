@@ -1,0 +1,75 @@
+# =============================
+# Node / pnpm
+# =============================
+node_modules
+.pnpm-store
+.npm
+.cache
+.tmp
+dist
+build
+.DS_Store
+
+# =============================
+# TypeScript
+# =============================
+*.tsbuildinfo
+
+# =============================
+# Next.js (apps/*)
+# =============================
+.next
+out
+.next-cache
+.vercel
+
+# =============================
+# Turbo / Monorepo
+# =============================
+.turbo
+turbo.log
+
+# =============================
+# Logs / Temp files
+# =============================
+*.log
+*.pid
+*.pid.lock
+logs/
+debug.log
+error.log
+
+# =============================
+# Env files
+# =============================
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+.env.*.local
+
+# =============================
+# Editor / OS
+# =============================
+.vscode/
+.idea/
+*.swp
+*.swo
+Thumbs.db
+
+# =============================
+# Supabase / Generated files
+# =============================
+supabase/.temp
+supabase/.branches
+supabase/.gitignore
+supabase/status.txt
+packages/supabase-types/src/database.types.ts
+
+# =============================
+# Misc
+# =============================
+coverage/
+storybook-static/
+playwright-report/

@@ -1,0 +1,9 @@
+{
+  "name": "@yourorg/api-contract",
+  "version": "0.1.0",
+  "type": "module",
+  "exports": {
+    "./zod": "./zod/index.ts",
+    "./types": "./types/index.ts"
+  }
+}

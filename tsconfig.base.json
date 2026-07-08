@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@schemas/*": ["packages/schemas/src/*"],
+      "@api-contract/*": ["packages/api-contract/*"],
+      "@db-types": ["packages/db-types/index.ts"]
+    }
+  }
+}
