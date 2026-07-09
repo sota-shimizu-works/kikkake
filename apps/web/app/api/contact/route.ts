@@ -83,8 +83,6 @@ export async function POST(request: Request) {
       `従業員数: ${employeeCount}`,
       `雇用保険の加入: ${employmentInsurance === "yes" ? "はい" : "いいえ"}`,
       "",
-      "お急ぎの場合は、本メールにご返信ください。",
-      "",
       "株式会社きっかけ",
     ].join("\n");
 
