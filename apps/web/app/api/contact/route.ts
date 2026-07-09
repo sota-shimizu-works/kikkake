@@ -99,7 +99,6 @@ export async function POST(request: Request) {
             <tr><td style="padding: 6px 12px 6px 0;"><strong>雇用保険の加入</strong></td><td>${employmentInsurance === "yes" ? "はい" : "いいえ"}</td></tr>
           </tbody>
         </table>
-        <p style="margin-top: 16px;">お急ぎの場合は、本メールにご返信ください。</p>
         <p style="margin-top: 24px;">株式会社きっかけ</p>
       </div>
     `;
