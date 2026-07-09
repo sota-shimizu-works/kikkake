@@ -34,8 +34,7 @@ export function Footer() {
             </p>
             <p className="mt-3 text-muted-foreground text-xs leading-relaxed max-w-sm">
               拠点：〒162-0814
-              東京都新宿区新小川町2-11<br />
-              双葉ビル 2F<br />
+              東京都新宿区新小川町2-11　双葉ビル 2F<br />
               事業内容：複数社提携による助成金活用コンサルティング・最適化サポート
             </p>
             <div className="mt-4">
@@ -46,6 +45,7 @@ export function Footer() {
               >
                 info@bizpartner-inc.com
               </Link>
+              <br />
                <Link
                 href="tel:08001230877"
                 className="text-sm transition-colors hover:underline"
