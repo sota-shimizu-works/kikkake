@@ -26,7 +26,7 @@ export function Footer() {
           {/* Brand */}
           <div className="md:col-span-2">
             <Link href="/" className="text-xl font-semibold tracking-tight">
-              Biz パートナー
+              株式会社きっかけ
             </Link>
             <p className="mt-4 text-muted-foreground text-sm max-w-xs leading-relaxed">
               助成金活用に強いパートナーとして、企業に最適な制度選びと
