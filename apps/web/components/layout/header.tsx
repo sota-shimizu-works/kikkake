@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 
 const navItems = [
   { href: "#works", label: "サービス内容" },
-  { href: "#about", label: "Bizパートナーについて" },
+  { href: "#about", label: "株式会社きっかけについて" },
   { href: "#testimonials", label: "お客様の声" },
 ];
 
@@ -33,7 +33,7 @@ export function Header() {
     e.preventDefault();
     const element = document.querySelector(href);
     if (element) {
-      const headerOffset = 80; // Height of fixed header
+      const headerOffset = window.innerWidth >= 768 ? 80 : 64;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition =
         elementPosition + window.pageYOffset - headerOffset;
@@ -50,10 +50,10 @@ export function Header() {
     <>
       <header
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+          "fixed top-0 left-0 right-0 z-50 border-b border-border transition-all duration-300",
           isScrolled
-            ? "bg-background/80 backdrop-blur-md border-b border-border"
-            : "bg-transparent",
+            ? "bg-background/80 backdrop-blur-md"
+            : "bg-background/95",
         )}
       >
         <div className="max-w-[1280px] mx-auto px-6 md:px-12">

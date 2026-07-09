@@ -11,11 +11,11 @@ const interTight = Inter_Tight({
 })
 
 export const metadata: Metadata = {
-  title: "Bizパートナー",
+  title: "株式会社きっかけ",
   description:
     "複数社提携による助成金活用コンサルティングで、企業に最適な制度選びと申請サポートをオンラインで提供します。",
   openGraph: {
-    title: "Bizパートナー",
+    title: "株式会社きっかけ",
     description:
       "複数社提携による助成金活用コンサルティングで、企業に最適な制度選びと申請サポートをオンラインで提供します。",
     type: "website",

@@ -37,6 +37,13 @@
   --sidebar-accent-foreground: oklch(0.03 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --header-height: 64px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --header-height: 80px;
+  }
 }
 
 .dark {
@@ -413,7 +420,7 @@
 /* Changed position from fixed bottom to fixed top below header */
 .bottom-gradient-bar {
   position: fixed;
-  top: 80px; /* Position below the header which is 80px tall */
+  top: var(--header-height);
   left: 0;
   right: 0;
   height: 1px; /* Reduced from 2px to 1px for even thinner gradient */

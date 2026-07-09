@@ -91,7 +91,7 @@ export function Hero() {
           </h1>
 
           <p className="mt-8 max-w-xl leading-relaxed text-left text-lg text-zinc-500 ml-0">
-            Bizパートナーでは複数の助成金コンサル会社と提携し、
+            株式会社きっかけでは複数の助成金コンサル会社と提携し、
             御社にとって最も負担の少ない助成金ルートをご案内しています。
             申請の可否や受給の可能性をオンラインで無料診断いたします。
           </p>

@@ -52,7 +52,7 @@ export function FinalCTA() {
                 <input
                   type="text"
                   required
-                  placeholder="例：Bizパートナー"
+                  placeholder="例：株式会社きっかけ"
                   className="w-full px-4 py-3 rounded-sm bg-background text-foreground placeholder:text-muted-foreground outline-none focus:ring-0 transition-colors"
                   style={inputBorder}
                 />

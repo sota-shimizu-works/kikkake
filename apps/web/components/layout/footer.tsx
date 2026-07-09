@@ -33,8 +33,9 @@ export function Footer() {
               申請サポートをオンラインで丁寧にご案内します。
             </p>
             <p className="mt-3 text-muted-foreground text-xs leading-relaxed max-w-sm">
-              拠点：東京都新宿区（※全国オンライン対応）
-              <br />
+              拠点：〒162-0814
+              東京都新宿区新小川町2-11<br />
+              双葉ビル 2F<br />
               事業内容：複数社提携による助成金活用コンサルティング・最適化サポート
             </p>
             <div className="mt-4">
@@ -45,6 +46,13 @@ export function Footer() {
               >
                 info@bizpartner-inc.com
               </Link>
+               <Link
+                href="tel:08001230877"
+                className="text-sm transition-colors hover:underline"
+                style={{ color: "#203eec" }}
+              >
+                08001230877
+              </Link>
             </div>
           </div>
         </div>
@@ -52,7 +60,7 @@ export function Footer() {
         {/* Bottom */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 mt-16 pt-8 border-t border-border">
           <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} Bizパートナー. All rights reserved.
+            © {new Date().getFullYear()} 株式会社きっかけ. All rights reserved.
           </p>
         </div>
       </div>
