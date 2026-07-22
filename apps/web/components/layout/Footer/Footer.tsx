@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Github, Linkedin, Twitter, Dribbble } from "lucide-react";
+import styles from "./Footer.module.scss";
 
 const socialLinks = [
   { href: "#", icon: Twitter, label: "Twitter" },
@@ -18,9 +19,9 @@ const footerLinks = [
   { href: "#contact", label: "Contact" },
 ];
 
-export function Footer() {
+export default function Footer() {
   return (
-    <footer className="border-t border-border">
+    <footer className={`${styles.root} border-t border-border`}>
       <div className="max-w-[1280px] mx-auto px-6 md:px-12 py-16 md:py-24">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
           {/* Brand */}

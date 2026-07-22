@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import styles from "./Header.module.scss";
 
 const navItems = [
   { href: "#works", label: "サービス内容" },
@@ -14,7 +15,7 @@ const navItems = [
   { href: "#testimonials", label: "お客様の声" },
 ];
 
-export function Header() {
+export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -50,6 +51,7 @@ export function Header() {
     <>
       <header
         className={cn(
+          styles.root,
           "fixed top-0 left-0 right-0 z-50 border-b border-border transition-all duration-300",
           isScrolled
             ? "bg-background/80 backdrop-blur-md"
@@ -124,7 +126,7 @@ export function Header() {
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div className="fixed inset-0 z-50 bg-background md:hidden">
-          <div className="flex flex-col h-full p-6">
+          <div className={`${styles.mobileMenu} flex flex-col h-full p-6`}>
             <div className="flex items-center justify-between">
               <Link href="/" className="block w-[150px]" aria-label="トップへ">
                 <Image

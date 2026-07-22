@@ -1,0 +1,21 @@
+//色設定
+$color1: #ffffff;
+$color2: #000000;
+$color3: #b4b4b4;
+$color4: #767676;
+$color5: #eeeeee;
+
+//break point
+$break-point_pc: 1500px;
+$break-point_xl: 1200px;
+$break-point_lg: 1024px;
+$break-point-md: 768px;
+$break-point-sp: 540px;
+$break-point-xs: 375px;
+$break-point-xs: 375px;
+// @include xl { (1200px) } PCの最小
+// @include lg { (1024px) } タブレット横
+// @include md { (768px) }　タブレット縦
+// @include sm { (767px) }　タブレット-スマホ
+// @include sp { (540px) }　スマホ-iPhoneX
+// @include xs { (375px) }　スマホ-iPhone5/6
