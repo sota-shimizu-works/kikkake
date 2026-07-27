@@ -2,17 +2,21 @@
 
 import type React from "react";
 
-import { useState, useEffect } from "react";
-import Image from "next/image";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { Mail, Menu, Sprout, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import styles from "./Header.module.scss";
 
 const navItems = [
-  { href: "#works", label: "サービス内容" },
+  { href: "#service", label: "サービスの紹介" },
+  { href: "#support-area", label: "支援領域" },
+  { href: "#support-flow", label: "支援の流れ" },
+  { href: "#plan", label: "料金体制" },
+  { href: "#achievements", label: "実績・支援事例" },
   { href: "#about", label: "株式会社きっかけについて" },
-  { href: "#testimonials", label: "お客様の声" },
+  { href: "#recruit", label: "採用情報" },
+  { href: "#questions", label: "よくある質問" },
 ];
 
 export default function Header() {
@@ -21,8 +25,9 @@ export default function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 24);
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -33,8 +38,9 @@ export default function Header() {
   ) => {
     e.preventDefault();
     const element = document.querySelector(href);
+
     if (element) {
-      const headerOffset = window.innerWidth >= 768 ? 80 : 64;
+      const headerOffset = window.innerWidth >= 1024 ? 96 : 72;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition =
         elementPosition + window.pageYOffset - headerOffset;
@@ -44,136 +50,108 @@ export default function Header() {
         behavior: "smooth",
       });
     }
+
     setIsMobileMenuOpen(false);
   };
 
   return (
     <>
       <header
-        className={cn(
-          styles.root,
-          "fixed top-0 left-0 right-0 z-50 border-b border-border transition-all duration-300",
-          isScrolled
-            ? "bg-background/80 backdrop-blur-md"
-            : "bg-background/95",
-        )}
+        className={cn(styles.root, {
+          [styles.scrolled]: isScrolled,
+        })}
       >
-        <div className="max-w-[1280px] mx-auto px-6 md:px-12">
-          <nav className="flex items-center justify-between h-16 md:h-20">
-            {/* Logo */}
-            <Link
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                window.scrollTo({ top: 0, behavior: "smooth" });
-              }}
-              className="block w-[150px] md:w-[178px]"
-              aria-label="ページ上部へ戻る"
-            >
-              <Image
-                src="/kikkake-yoko.png"
-                alt="Kikkake"
-                width={1601}
-                height={360}
-                priority
-                className="h-auto w-full"
-              />
-            </Link>
+        <div className={styles.inner}>
+          <Link
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+            className={styles.brand}
+            aria-label="株式会社きっかけのトップへ戻る"
+          >
+            <span className={styles.brandMark} aria-hidden="true">
+              <Sprout size={26} strokeWidth={2.2} />
+            </span>
+            <span className={styles.brandText}>株式会社きっかけ</span>
+          </Link>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-8">
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={(e) => handleNavClick(e, item.href)}
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </div>
-
-            {/* CTA Button */}
-            <div className="hidden md:block">
+          <nav className={styles.desktopNav} aria-label="グローバルナビゲーション">
+            {navItems.map((item) => (
               <Link
-                href="#contact"
-                className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium rounded-full text-white transition-all hover:shadow-xl relative overflow-hidden group"
-                style={{
-                  background:
-                    "linear-gradient(135deg, #ff8a7a 0%, #ffb3a8 100%)",
-                  boxShadow: "0 4px 20px rgba(255, 138, 122, 0.3)",
-                }}
+                key={item.href}
+                href={item.href}
+                onClick={(e) => handleNavClick(e, item.href)}
+                className={styles.desktopNavLink}
               >
-                <span className="relative z-10">無料診断</span>
-                {/* Glow effect on hover */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl bg-gradient-to-r from-[#ff8a7a] to-[#ffb3a8]" />
+                {item.label}
               </Link>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsMobileMenuOpen(true)}
-              className="md:hidden p-2 -mr-2"
-              aria-label="Open menu"
-            >
-              <Menu className="w-5 h-5" />
-            </button>
+            ))}
           </nav>
+
+          <Link
+            href="#contact"
+            onClick={(e) => handleNavClick(e, "#contact")}
+            className={styles.contactButton}
+          >
+            <span className={styles.contactLabel}>お問い合わせ</span>
+            <span className={styles.contactIcon} aria-hidden="true">
+              <Mail size={18} strokeWidth={2.2} />
+            </span>
+          </Link>
+
+          <button
+            onClick={() => setIsMobileMenuOpen(true)}
+            className={styles.menuButton}
+            aria-label="メニューを開く"
+          >
+            <Menu className="h-5 w-5" />
+          </button>
         </div>
       </header>
 
-      {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-50 bg-background md:hidden">
-          <div className={`${styles.mobileMenu} flex flex-col h-full p-6`}>
-            <div className="flex items-center justify-between">
-              <Link href="/" className="block w-[150px]" aria-label="トップへ">
-                <Image
-                  src="/kikkake-yoko.png"
-                  alt="Kikkake"
-                  width={1601}
-                  height={360}
-                  priority
-                  className="h-auto w-full"
-                />
-              </Link>
+        <div className={styles.mobileOverlay}>
+          <div className={styles.mobilePanel}>
+            <div className={styles.mobileHeader}>
+              <div className={styles.brand}>
+                <span className={styles.brandMark} aria-hidden="true">
+                  <Sprout size={24} strokeWidth={2.2} />
+                </span>
+                <span className={styles.brandText}>株式会社きっかけ</span>
+              </div>
+
               <button
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="p-2 -mr-2"
-                aria-label="Close menu"
+                className={styles.closeButton}
+                aria-label="メニューを閉じる"
               >
-                <X className="w-5 h-5" />
+                <X className="h-5 w-5" />
               </button>
             </div>
-            <nav className="flex flex-col gap-6 mt-12">
+
+            <nav className={styles.mobileNav} aria-label="モバイルナビゲーション">
               {navItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
                   onClick={(e) => handleNavClick(e, item.href)}
-                  className="text-3xl font-semibold hover:text-muted-foreground transition-colors"
+                  className={styles.mobileNavLink}
                 >
                   {item.label}
                 </Link>
               ))}
             </nav>
-            <div className="mt-auto">
-              <Link
-                href="#contact"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="inline-flex items-center justify-center w-full px-5 py-3 text-base font-medium rounded-full text-white transition-all hover:shadow-xl relative overflow-hidden group"
-                style={{
-                  background:
-                    "linear-gradient(135deg, #ff8a7a 0%, #ffb3a8 100%)",
-                  boxShadow: "0 4px 20px rgba(255, 138, 122, 0.3)",
-                }}
-              >
-                <span className="relative z-10">無料診断</span>
-                {/* Glow effect on hover */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl bg-gradient-to-r from-[#ff8a7a] to-[#ffb3a8]" />
-              </Link>
-            </div>
+
+            <Link
+              href="#contact"
+              onClick={(e) => handleNavClick(e, "#contact")}
+              className={styles.mobileContactButton}
+            >
+              <span>お問い合わせ</span>
+              <Mail size={18} strokeWidth={2.2} />
+            </Link>
           </div>
         </div>
       )}
