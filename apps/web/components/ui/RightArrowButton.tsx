@@ -10,6 +10,7 @@ type BaseProps = {
 
 type SubmitProps = BaseProps & {
   kind: "submit"
+  disabled?: boolean
 }
 
 type LinkProps = BaseProps & {
@@ -38,7 +39,11 @@ export default function RightArrowButton(props: RightArrowButtonProps) {
   }
 
   return (
-    <button type="submit" className={cn(styles.button, props.className)}>
+    <button
+      type="submit"
+      className={cn(styles.button, props.className)}
+      disabled={props.disabled}
+    >
       {content}
     </button>
   )

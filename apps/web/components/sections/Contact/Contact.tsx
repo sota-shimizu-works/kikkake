@@ -1,25 +1,78 @@
 "use client"
 
+import { useState } from "react"
 import SectionHead from "@/components/ui/SectionHead"
 import RightArrowButton from "@/components/ui/RightArrowButton"
 import styles from "./Contact.module.scss"
 
 const employeeOptions = [
-  "選択してください",
-  "1〜10名",
-  "11〜50名",
-  "51〜100名",
-  "101名以上",
+  { value: "", label: "選択してください" },
+  { value: "1〜10名", label: "1〜10名" },
+  { value: "11〜50名", label: "11〜50名" },
+  { value: "51〜100名", label: "51〜100名" },
+  { value: "101名以上", label: "101名以上" },
 ]
 
 const insuranceOptions = [
-  "選択してください",
-  "加入している",
-  "加入していない",
-  "よくわからない",
+  { value: "", label: "選択してください" },
+  { value: "yes", label: "加入している" },
+  { value: "no", label: "加入していない" },
+  { value: "unknown", label: "よくわからない" },
 ]
 
 export default function Contact() {
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitMessage, setSubmitMessage] = useState("")
+  const [submitError, setSubmitError] = useState(false)
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+
+    const form = event.currentTarget
+    const formData = new FormData(form)
+
+    setIsSubmitting(true)
+    setSubmitMessage("")
+    setSubmitError(false)
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          companyName: String(formData.get("companyName") ?? ""),
+          contactName: String(formData.get("contactName") ?? ""),
+          email: String(formData.get("email") ?? ""),
+          employeeCount: String(formData.get("employeeCount") ?? ""),
+          employmentInsurance: String(formData.get("employmentInsurance") ?? ""),
+        }),
+      })
+
+      const result = (await response.json().catch(() => null)) as
+        | { ok?: boolean; error?: string }
+        | null
+
+      if (!response.ok) {
+        throw new Error(result?.error ?? "送信に失敗しました。")
+      }
+
+      form.reset()
+      setSubmitError(false)
+      setSubmitMessage("お問い合わせを送信しました。ご連絡ありがとうございます。")
+    } catch (error) {
+      setSubmitError(true)
+      setSubmitMessage(
+        error instanceof Error
+          ? error.message
+          : "送信中にエラーが発生しました。",
+      )
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   return (
     <section id="contact" className={styles.section}>
       <div className="page-width">
@@ -44,36 +97,38 @@ export default function Contact() {
             </p>
           </div>
 
-          <form className={styles.form}>
+          <form className={styles.form} onSubmit={handleSubmit}>
             <div className={styles.row}>
               <div className={styles.labelGroup}>
-                <label htmlFor="company" className={styles.label}>
+                <label htmlFor="companyName" className={styles.label}>
                   会社名
                 </label>
                 <span className={styles.required}>必須</span>
               </div>
               <input
-                id="company"
-                name="company"
+                id="companyName"
+                name="companyName"
                 type="text"
                 placeholder="株式会社きっかけ"
                 className={styles.field}
+                required
               />
             </div>
 
             <div className={styles.row}>
               <div className={styles.labelGroup}>
-                <label htmlFor="name" className={styles.label}>
+                <label htmlFor="contactName" className={styles.label}>
                   ご担当者様名
                 </label>
                 <span className={styles.required}>必須</span>
               </div>
               <input
-                id="name"
-                name="name"
+                id="contactName"
+                name="contactName"
                 type="text"
                 placeholder="山田太郎"
                 className={styles.field}
+                required
               />
             </div>
 
@@ -90,21 +145,28 @@ export default function Contact() {
                 type="email"
                 placeholder="info@example.com"
                 className={styles.field}
+                required
               />
             </div>
 
             <div className={styles.row}>
               <div className={styles.labelGroup}>
-                <label htmlFor="employees" className={styles.label}>
+                <label htmlFor="employeeCount" className={styles.label}>
                   従業員数
                 </label>
                 <span className={styles.required}>必須</span>
               </div>
               <div className={styles.selectWrap}>
-                <select id="employees" name="employees" className={styles.field}>
+                <select
+                  id="employeeCount"
+                  name="employeeCount"
+                  className={styles.field}
+                  defaultValue=""
+                  required
+                >
                   {employeeOptions.map((option) => (
-                    <option key={option} value={option}>
-                      {option}
+                    <option key={option.value || option.label} value={option.value}>
+                      {option.label}
                     </option>
                   ))}
                 </select>
@@ -113,26 +175,42 @@ export default function Contact() {
 
             <div className={styles.row}>
               <div className={styles.labelGroup}>
-                <label htmlFor="insurance" className={styles.label}>
+                <label htmlFor="employmentInsurance" className={styles.label}>
                   雇用保険の加入
                 </label>
                 <span className={styles.required}>必須</span>
               </div>
               <div className={styles.selectWrap}>
-                <select id="insurance" name="insurance" className={styles.field}>
+                <select
+                  id="employmentInsurance"
+                  name="employmentInsurance"
+                  className={styles.field}
+                  defaultValue=""
+                  required
+                >
                   {insuranceOptions.map((option) => (
-                    <option key={option} value={option}>
-                      {option}
+                    <option key={option.value || option.label} value={option.value}>
+                      {option.label}
                     </option>
                   ))}
                 </select>
               </div>
             </div>
 
+            {submitMessage ? (
+              <p
+                className={submitError ? styles.messageError : styles.messageSuccess}
+                role="status"
+              >
+                {submitMessage}
+              </p>
+            ) : null}
+
             <RightArrowButton
               kind="submit"
-              text="送信する"
+              text={isSubmitting ? "送信中..." : "送信する"}
               className={styles.submit}
+              disabled={isSubmitting}
             />
           </form>
         </div>
