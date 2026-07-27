@@ -9,7 +9,7 @@ export default function MainVisual() {
       <div className={styles.imageLayer}>
         <Image
           src="/mainvisual/mainvisual.png"
-          alt="経営支援の相談風景"
+          alt="経営支援のイメージ"
           fill
           priority
           className={styles.backgroundImage}

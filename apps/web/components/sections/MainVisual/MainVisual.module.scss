@@ -3,7 +3,11 @@
 
 .section {
   position: relative;
-  min-height: 100svh;
+  width: 100%;
+  height: 100vh;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
   overflow: hidden;
   background: #f4efe9;
 }
@@ -30,30 +34,90 @@
   position: relative;
   z-index: 1;
   display: flex;
-  min-height: 100svh;
+  height: 100%;
+  min-height: 100%;
   align-items: flex-end;
   justify-content: space-between;
   padding: 112px 20px 28px;
+  box-sizing: border-box;
+
+  @include xl {
+    padding: 108px 24px 26px;
+  }
+
+  @include lg {
+    padding: 100px 20px 24px;
+  }
+
+  @include md {
+    padding: 92px 18px 22px;
+  }
+
+  @include sp {
+    padding: 88px 14px 18px;
+  }
 }
 
 .copyPanel {
   display: flex;
   align-items: center;
-  width: min(240px, 62vw);
-  min-height: 310px;
-  padding: 28px 22px;
-  border-radius: 6px;
+  width: 200px;
+  min-height: 560px;
+  border-radius: 8px;
   background: #f6806d;
   box-shadow: 0 18px 36px rgba(245, 128, 109, 0.22);
+
+  @include xl {
+    width: 180px;
+    min-height: 500px;
+  }
+
+  @include lg {
+    width: 150px;
+    min-height: 430px;
+    border-radius: 6px;
+  }
+
+  @include md {
+    width: 128px;
+    min-height: 360px;
+  }
+
+  @include sp {
+    width: 110px;
+    min-height: 300px;
+  }
 }
 
 .copyText {
   color: #ffffff;
-  font-size: clamp(2rem, 4vw, 3.75rem);
+  font-size: 6.4rem;
   font-weight: 700;
   line-height: 1.5;
   letter-spacing: 0.04em;
   margin: 0;
+  position: absolute;
+  left: 100px;
+
+  @include xl {
+    font-size: 5.6rem;
+    left: 92px;
+  }
+
+  @include lg {
+    font-size: 4.6rem;
+    left: 72px;
+  }
+
+  @include md {
+    font-size: 3.8rem;
+    left: 62px;
+  }
+
+  @include sp {
+    font-size: 3rem;
+    left: 52px;
+  }
 }
 
 .scrollCue {
@@ -65,75 +129,44 @@
 }
 
 .scrollLabel {
-  font-size: 0.75rem;
-  font-weight: 700;
+  font-size: 1.4rem;
+  font-weight: 400;
   letter-spacing: 0.03em;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.22);
+
+  @include md {
+    font-size: 1.2rem;
+  }
+
+  @include sp {
+    font-size: 1rem;
+  }
 }
 
 .scrollIcon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 22px;
-  height: 22px;
+  width: 40px;
+  height: 40px;
   border: 1px solid rgba(255, 255, 255, 0.8);
-  border-radius: 3px;
-  background: rgba(255, 255, 255, 0.08);
-}
+  border-radius: 4px;
 
-@media (min-width: 768px) {
-  .content {
-    padding: 140px 36px 36px;
+  @include md {
+    width: 34px;
+    height: 34px;
   }
 
-  .copyPanel {
-    width: 280px;
-    min-height: 410px;
-    padding: 36px 28px;
+  @include sp {
+    width: 30px;
+    height: 30px;
   }
 
-  .scrollCue {
-    gap: 12px;
-  }
-}
+  img {
+    max-width: 18px;
 
-@media (min-width: 1024px) {
-  .section {
-    min-height: 100vh;
-  }
-
-  .content {
-    min-height: 100vh;
-    padding: 126px 6px 14px;
-  }
-
-  .copyPanel {
-    width: 230px;
-    min-height: 309px;
-    padding: 28px 24px;
-    border-radius: 4px;
-  }
-
-  .copyText {
-    font-size: 2rem;
-    line-height: 1.52;
-    letter-spacing: 0.04em;
-  }
-
-  .scrollCue {
-    position: absolute;
-    right: 42px;
-    bottom: 38px;
-    gap: 10px;
-  }
-
-  .scrollLabel {
-    font-size: 0.67rem;
-  }
-
-  .scrollIcon {
-    width: 23px;
-    height: 23px;
+    @include sp {
+      max-width: 14px;
+    }
   }
 }

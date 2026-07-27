@@ -5,7 +5,7 @@ import type React from "react";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Mail, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import styles from "./Header.module.scss";
 
@@ -23,6 +23,8 @@ const navItems = [
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileMenuVisible, setIsMobileMenuVisible] = useState(false);
+  const [isMobileMenuClosing, setIsMobileMenuClosing] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -52,7 +54,24 @@ export default function Header() {
       });
     }
 
+    closeMobileMenu();
+  };
+
+  const openMobileMenu = () => {
+    setIsMobileMenuVisible(true);
+    setIsMobileMenuClosing(false);
+    requestAnimationFrame(() => {
+      setIsMobileMenuOpen(true);
+    });
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuClosing(true);
     setIsMobileMenuOpen(false);
+    window.setTimeout(() => {
+      setIsMobileMenuVisible(false);
+      setIsMobileMenuClosing(false);
+    }, 320);
   };
 
   return (
@@ -76,14 +95,17 @@ export default function Header() {
               <Image
                 src="/mainvisual/logo.svg"
                 alt=""
-                width={30}
-                height={30}
+                width={180}
+                height={40}
                 className={styles.brandLogo}
               />
             </span>
           </Link>
 
-          <nav className={styles.desktopNav} aria-label="グローバルナビゲーション">
+          <nav
+            className={styles.desktopNav}
+            aria-label="グローバルナビゲーション"
+          >
             {navItems.map((item) => (
               <Link
                 key={item.href}
@@ -103,12 +125,18 @@ export default function Header() {
           >
             <span className={styles.contactLabel}>お問い合わせ</span>
             <span className={styles.contactIcon} aria-hidden="true">
-              <Mail size={18} strokeWidth={2.2} />
+              <Image
+                src="/mainvisual/mail_icon.svg"
+                alt=""
+                width={20}
+                height={20}
+                className={styles.contactIconImage}
+              />
             </span>
           </Link>
 
           <button
-            onClick={() => setIsMobileMenuOpen(true)}
+            onClick={openMobileMenu}
             className={styles.menuButton}
             aria-label="メニューを開く"
           >
@@ -117,9 +145,17 @@ export default function Header() {
         </div>
       </header>
 
-      {isMobileMenuOpen && (
-        <div className={styles.mobileOverlay}>
-          <div className={styles.mobilePanel}>
+      {isMobileMenuVisible && (
+        <div
+          className={`${styles.mobileOverlay} ${
+            isMobileMenuClosing ? styles.mobileOverlayClosing : ""
+          }`}
+        >
+          <div
+            className={`${styles.mobilePanel} ${
+              isMobileMenuClosing ? styles.mobilePanelClosing : ""
+            }`}
+          >
             <div className={styles.mobileHeader}>
               <div className={styles.brand}>
                 <span className={styles.brandMark} aria-hidden="true">
@@ -131,11 +167,10 @@ export default function Header() {
                     className={styles.brandLogo}
                   />
                 </span>
-                <span className={styles.brandText}>株式会社きっかけ</span>
               </div>
 
               <button
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={closeMobileMenu}
                 className={styles.closeButton}
                 aria-label="メニューを閉じる"
               >
@@ -143,7 +178,10 @@ export default function Header() {
               </button>
             </div>
 
-            <nav className={styles.mobileNav} aria-label="モバイルナビゲーション">
+            <nav
+              className={styles.mobileNav}
+              aria-label="モバイルナビゲーション"
+            >
               {navItems.map((item) => (
                 <Link
                   key={item.href}
@@ -162,7 +200,15 @@ export default function Header() {
               className={styles.mobileContactButton}
             >
               <span>お問い合わせ</span>
-              <Mail size={18} strokeWidth={2.2} />
+              <span className={styles.mobileContactIcon} aria-hidden="true">
+                <Image
+                  src="/mainvisual/mail_icon.svg"
+                  alt=""
+                  width={20}
+                  height={20}
+                  className={styles.contactIconImage}
+                />
+              </span>
             </Link>
           </div>
         </div>
