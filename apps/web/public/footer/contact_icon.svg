@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="80" height="80" viewBox="0 0 80 80">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="長方形_171" data-name="長方形 171" width="48" height="48" transform="translate(472 1270)" fill="#fed3c4"/>
+    </clipPath>
+  </defs>
+  <g id="contact_icon" transform="translate(-472 -1286)">
+    <circle id="楕円形_6" data-name="楕円形 6" cx="40" cy="40" r="40" transform="translate(472 1286)" fill="#f9f3ee"/>
+    <g id="icon" transform="translate(16 32)" clip-path="url(#clip-path)">
+      <g id="icon-2" data-name="icon" transform="translate(471.667 1208.346)">
+        <path id="パス_312" data-name="パス 312" d="M24.607,92.35a4.942,4.942,0,0,0,3.522-1.461l4.949-4.943L48.721,70.3a2.908,2.908,0,0,0-2.864-2.4H3.356A2.909,2.909,0,0,0,.492,70.3L21.079,90.888A4.954,4.954,0,0,0,24.607,92.35Z" transform="translate(-0.446 0)" fill="#f57f6a"/>
+        <path id="パス_313" data-name="パス 313" d="M10.753,155.983l-6.3-6.293L.015,145.236v.015L0,145.236v21.5Z" transform="translate(0 -70.038)" fill="#fed3c4"/>
+        <path id="パス_314" data-name="パス 314" d="M36.675,285.242h0l-.011-.011-4.943,4.943a8.476,8.476,0,0,1-11.993,0L14.8,285.242h0l-.011-.011L1.726,298.29a2.915,2.915,0,0,0,2.748,1.939h42.5a2.916,2.916,0,0,0,2.748-1.939L36.675,285.242Z" transform="translate(-1.563 -196.817)" fill="#fed3c4"/>
+        <path id="パス_315" data-name="パス 315" d="M408.738,145.184l-.011.011v-.021l-10.754,10.753,10.754,10.753V154.09Z" transform="translate(-360.405 -69.981)" fill="#fed3c4"/>
+      </g>
+    </g>
+  </g>
+</svg>

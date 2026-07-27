@@ -1,69 +1,91 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
-import { Github, Linkedin, Twitter, Dribbble } from "lucide-react";
 import styles from "./Footer.module.scss";
 
-const socialLinks = [
-  { href: "#", icon: Twitter, label: "Twitter" },
-  { href: "#", icon: Linkedin, label: "LinkedIn" },
-  { href: "#", icon: Github, label: "GitHub" },
-  { href: "#", icon: Dribbble, label: "Dribbble" },
+const footerLinks = [
+  { href: "#service", label: "サービスの紹介" },
+  { href: "#support-area", label: "支援領域" },
+  { href: "#support-flow", label: "支援の流れ" },
+  { href: "#plan", label: "料金体制" },
+  { href: "#achievements", label: "実績・支援事例" },
+  { href: "#about", label: "株式会社きっかけについて" },
+  { href: "#recruit", label: "採用情報" },
+  { href: "#questions", label: "よくある質問" },
+  { href: "#contact", label: "お問い合わせ" },
 ];
 
-const footerLinks = [
-  { href: "/", label: "Home" },
-  { href: "#about", label: "About" },
-  { href: "#works", label: "Works" },
-  { href: "#insights", label: "Insights" },
-  { href: "#contact", label: "Contact" },
+const contactCards = [
+  {
+    href: "#contact",
+    icon: "/footer/contact_icon.svg",
+    badge: "24時間受付フォーム",
+    title: "24時間受付中",
+  },
+  {
+    href: "tel:08001230877",
+    icon: "/footer/tel_icon.svg",
+    badge: "お電話でのお問い合わせ",
+    title: "TEL : 08001230877",
+  },
+  {
+    href: "#contact",
+    icon: "/footer/chat_icon.svg",
+    badge: "お気軽にご相談ください",
+    title: "どんなご相談でもOK",
+  },
 ];
 
 export default function Footer() {
   return (
-    <footer className={`${styles.root} border-t border-border`}>
-      <div className="max-w-[1280px] mx-auto px-6 md:px-12 py-16 md:py-24">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
-          {/* Brand */}
-          <div className="md:col-span-2">
-            <Link href="/" className="text-xl font-semibold tracking-tight">
-              株式会社きっかけ
-            </Link>
-            <p className="mt-4 text-muted-foreground text-sm max-w-xs leading-relaxed">
-              助成金活用に強いパートナーとして、企業に最適な制度選びと
-              申請サポートをオンラインで丁寧にご案内します。
-            </p>
-            <p className="mt-3 text-muted-foreground text-xs leading-relaxed max-w-sm">
-              拠点：〒162-0814
-              東京都新宿区新小川町2-11　双葉ビル 2F<br />
-              事業内容：複数社提携による助成金活用コンサルティング・最適化サポート
-            </p>
-            <div className="mt-4">
-              <Link
-                href="mailto:info@bizpartner-inc.com"
-                className="text-sm transition-colors hover:underline"
-                style={{ color: "#203eec" }}
-              >
-                info@bizpartner-inc.com
-              </Link>
-              <br />
-               <Link
-                href="tel:08001230877"
-                className="text-sm transition-colors hover:underline"
-                style={{ color: "#203eec" }}
-              >
-                08001230877
-              </Link>
-            </div>
+    <footer className={styles.root}>
+      <div className={styles.inner}>
+        <div className={styles.brandBlock}>
+          <Image
+            src="/footer/footer_logo.svg"
+            alt="株式会社きっかけ"
+            width={130}
+            height={57}
+            className={styles.logo}
+          />
+          <p className={styles.catch}>あなたの「きっかけ」を一緒に見つけます。</p>
+          <div className={styles.address}>
+            <p className={styles.addressLabel}>拠点</p>
+            <p>〒162-0814 東京都新宿区新小川町2-11 双葉ビル 2F</p>
           </div>
         </div>
 
-        {/* Bottom */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 mt-16 pt-8 border-t border-border">
-          <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} 株式会社きっかけ. All rights reserved.
-          </p>
+        <div className={styles.cards}>
+          {contactCards.map((card) => (
+            <Link key={card.title} href={card.href} className={styles.card}>
+              <span className={styles.cardIcon}>
+                <Image src={card.icon} alt="" width={44} height={44} />
+              </span>
+              <span className={styles.cardBody}>
+                <span className={styles.cardBadge}>{card.badge}</span>
+                <span className={styles.cardTitle}>{card.title}</span>
+              </span>
+            </Link>
+          ))}
         </div>
+
+        <nav className={styles.nav} aria-label="フッターナビゲーション">
+          {footerLinks.map((link) => (
+            <Link key={link.href} href={link.href} className={styles.navLink}>
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+
+        <p className={styles.copy}>
+          © {new Date().getFullYear()} 株式会社きっかけ. All rights reserved.
+        </p>
+
+        <Link href="#" className={styles.pageTop} aria-label="ページトップへ戻る">
+          <span className={styles.pageTopLine} />
+          <span className={styles.pageTopText}>PAGE TOP</span>
+        </Link>
       </div>
     </footer>
   );
