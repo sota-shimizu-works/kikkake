@@ -81,12 +81,20 @@ export default function Footer() {
         <p className={styles.copy}>
           © {new Date().getFullYear()} 株式会社きっかけ. All rights reserved.
         </p>
-
-        <Link href="#" className={styles.pageTop} aria-label="ページトップへ戻る">
-          <span className={styles.pageTopLine} />
-          <span className={styles.pageTopText}>PAGE TOP</span>
-        </Link>
       </div>
+
+      <Link
+        href="#"
+        className={styles.pageTop}
+        aria-label="ページトップへ戻る"
+        onClick={(e) => {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }}
+      >
+        <span className={styles.pageTopLine} />
+        <span className={styles.pageTopText}>PAGE TOP</span>
+      </Link>
     </footer>
   );
 }

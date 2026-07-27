@@ -51,24 +51,24 @@
 }
 
 .cards {
-  margin: 64px auto 0;
-  display:flex;
+  display: flex;
   gap: 16px;
+  margin: 64px auto 0;
 }
 
 .card {
   display: flex;
   align-items: center;
   gap: 16px;
-  max-width: calc(100% / 3 );
+  max-width: calc(100% / 3);
   width: 100%;
   padding: 24px;
+  border: 2px solid #fed3c4;
   border-radius: 10px;
   background: #ffffff;
   box-shadow: 0 10px 20px rgba(122, 58, 47, 0.12);
   color: #f57f6a;
   text-decoration: none;
-  border: 2px solid #FED3C4;
 }
 
 .cardIcon {
@@ -141,7 +141,7 @@
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 21px;
   color: #ffffff;
   text-decoration: none;
 }
@@ -153,10 +153,11 @@
 }
 
 .pageTopText {
-  font-size: 1.2rem;
-  font-weight: 700;
+  font-size: 1.4rem;
+  font-weight: 500;
   letter-spacing: 0.14em;
   writing-mode: vertical-rl;
+  transform: rotate(180deg);
 }
 
 @include xl {
@@ -179,17 +180,18 @@
   }
 
   .cards {
-    grid-template-columns: 1fr;
     max-width: 480px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cards .card {
+    max-width: 330px;
   }
 
   .pageTop {
     top: 64px;
     right: 20px;
-  }
-
-  .pageTopLine {
-    height: 64px;
   }
 }
 
@@ -247,18 +249,50 @@
   }
 
   .pageTop {
-    position: static;
-    margin: 32px auto 0;
-    gap: 10px;
+    position: fixed;
+    top: auto;
+    right: 16px;
+    bottom: 16px;
+    z-index: 40;
+    width: 52px;
+    height: 52px;
+    border-radius: 9999px;
+    justify-content: center;
+    gap: 0;
+    background: #ffffff;
+    box-shadow: 0 10px 24px rgba(122, 58, 47, 0.24);
   }
 
   .pageTopLine {
-    width: 56px;
-    height: 1px;
+    position: relative;
+    width: 2px;
+    height: 18px;
+    background: #f57f6a;
+  }
+
+  .pageTopLine::before,
+  .pageTopLine::after {
+    content: "";
+    position: absolute;
+    top: 1px;
+    width: 2px;
+    height: 9px;
+    background: #f57f6a;
+  }
+
+  .pageTopLine::before {
+    left: -1px;
+    transform: rotate(45deg);
+    transform-origin: top center;
+  }
+
+  .pageTopLine::after {
+    right: -1px;
+    transform: rotate(-45deg);
+    transform-origin: top center;
   }
 
   .pageTopText {
-    writing-mode: horizontal-tb;
-    letter-spacing: 0.1em;
+    display: none;
   }
 }
