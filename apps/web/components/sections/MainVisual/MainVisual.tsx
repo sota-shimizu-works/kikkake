@@ -1,16 +1,45 @@
 "use client"
 
+import Image from "next/image"
 import styles from "./MainVisual.module.scss"
 
 export default function MainVisual() {
   return (
-    <section
-      className={`${styles.section} relative flex h-[calc(100vh-80px)] w-full items-center justify-center bg-gradient-to-b from-[#203eec] to-[#203eec]/10 md:h-[calc(100vh-120px)]`}
-    >
-      <div className="absolute inset-0 flex items-center justify-center">
-        <h1 className="text-center text-4xl leading-tight font-bold text-white md:text-6xl lg:text-7xl">
-          株式会社きっかけ
-        </h1>
+    <section className={styles.section}>
+      <div className={styles.imageLayer}>
+        <Image
+          src="/mainvisual/mainvisual.png"
+          alt="経営支援の相談風景"
+          fill
+          priority
+          className={styles.backgroundImage}
+          sizes="100vw"
+        />
+        <div className={styles.overlay} />
+      </div>
+
+      <div className={styles.content}>
+        <div className={styles.copyPanel}>
+          <p className={styles.copyText}>
+            経営に、
+            <br />
+            前向きな
+            <br />
+            きっかけを
+          </p>
+        </div>
+
+        <div className={styles.scrollCue}>
+          <span className={styles.scrollLabel}>ScrollDown</span>
+          <span className={styles.scrollIcon}>
+            <Image
+              src="/mainvisual/under_arrow.svg"
+              alt=""
+              width={12}
+              height={12}
+            />
+          </span>
+        </div>
       </div>
     </section>
   )

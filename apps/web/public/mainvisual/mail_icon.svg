@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18" viewBox="0 0 18 18">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="長方形_9" data-name="長方形 9" width="18" height="18" transform="translate(718.2 1578.2)" fill="#3faf37"/>
+    </clipPath>
+  </defs>
+  <g id="mail_icon" transform="translate(-718.2 -1578.2)" clip-path="url(#clip-path)">
+    <g id="icon" transform="translate(718.2 1512.69)">
+      <path id="パス_312" data-name="パス 312" d="M9.473,77a1.84,1.84,0,0,0,1.312-.544l1.843-1.841,5.826-5.826a1.083,1.083,0,0,0-1.067-.9H1.559a1.083,1.083,0,0,0-1.067.9l7.667,7.667A1.845,1.845,0,0,0,9.473,77Z" transform="translate(-0.475 0)" fill="#f57f6a"/>
+      <path id="パス_313" data-name="パス 313" d="M4,149.239,1.66,146.895.006,145.236v.006L0,145.236v8.007Z" transform="translate(0 -74.62)" fill="#f57f6a"/>
+      <path id="パス_314" data-name="パス 314" d="M14.741,285.235h0l0,0L12.9,287.072a3.157,3.157,0,0,1-4.466,0l-1.837-1.837h0l0,0-4.863,4.863a1.086,1.086,0,0,0,1.023.722H18.577a1.086,1.086,0,0,0,1.023-.722l-4.859-4.859Z" transform="translate(-1.665 -209.693)" fill="#f57f6a"/>
+      <path id="パス_315" data-name="パス 315" d="M401.983,145.177l0,0v-.008l-4,4,4,4v-4.689Z" transform="translate(-383.983 -74.559)" fill="#f57f6a"/>
+    </g>
+  </g>
+</svg>

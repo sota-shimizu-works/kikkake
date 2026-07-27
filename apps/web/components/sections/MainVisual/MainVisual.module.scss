@@ -2,4 +2,138 @@
 @use "../../../styles/mixin" as *;
 
 .section {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  background: #f4efe9;
+}
+
+.imageLayer {
+  position: absolute;
+  inset: 0;
+}
+
+.backgroundImage {
+  object-fit: cover;
+  object-position: center;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.08) 28%, rgba(255, 255, 255, 0.1) 100%),
+    linear-gradient(90deg, rgba(244, 239, 233, 0.08) 0%, rgba(255, 255, 255, 0) 45%, rgba(21, 24, 34, 0.08) 100%);
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  min-height: 100svh;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 112px 20px 28px;
+}
+
+.copyPanel {
+  display: flex;
+  align-items: center;
+  width: min(240px, 62vw);
+  min-height: 310px;
+  padding: 28px 22px;
+  border-radius: 6px;
+  background: #f6806d;
+  box-shadow: 0 18px 36px rgba(245, 128, 109, 0.22);
+}
+
+.copyText {
+  color: #ffffff;
+  font-size: clamp(2rem, 4vw, 3.75rem);
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+
+.scrollCue {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+  color: #ffffff;
+}
+
+.scrollLabel {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.22);
+}
+
+.scrollIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+@media (min-width: 768px) {
+  .content {
+    padding: 140px 36px 36px;
+  }
+
+  .copyPanel {
+    width: 280px;
+    min-height: 410px;
+    padding: 36px 28px;
+  }
+
+  .scrollCue {
+    gap: 12px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section {
+    min-height: 100vh;
+  }
+
+  .content {
+    min-height: 100vh;
+    padding: 126px 6px 14px;
+  }
+
+  .copyPanel {
+    width: 230px;
+    min-height: 309px;
+    padding: 28px 24px;
+    border-radius: 4px;
+  }
+
+  .copyText {
+    font-size: 2rem;
+    line-height: 1.52;
+    letter-spacing: 0.04em;
+  }
+
+  .scrollCue {
+    position: absolute;
+    right: 42px;
+    bottom: 38px;
+    gap: 10px;
+  }
+
+  .scrollLabel {
+    font-size: 0.67rem;
+  }
+
+  .scrollIcon {
+    width: 23px;
+    height: 23px;
+  }
 }

@@ -3,8 +3,9 @@
 import type React from "react";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { Mail, Menu, Sprout, X } from "lucide-react";
+import { Mail, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import styles from "./Header.module.scss";
 
@@ -72,9 +73,14 @@ export default function Header() {
             aria-label="株式会社きっかけのトップへ戻る"
           >
             <span className={styles.brandMark} aria-hidden="true">
-              <Sprout size={26} strokeWidth={2.2} />
+              <Image
+                src="/mainvisual/logo.svg"
+                alt=""
+                width={30}
+                height={30}
+                className={styles.brandLogo}
+              />
             </span>
-            <span className={styles.brandText}>株式会社きっかけ</span>
           </Link>
 
           <nav className={styles.desktopNav} aria-label="グローバルナビゲーション">
@@ -117,7 +123,13 @@ export default function Header() {
             <div className={styles.mobileHeader}>
               <div className={styles.brand}>
                 <span className={styles.brandMark} aria-hidden="true">
-                  <Sprout size={24} strokeWidth={2.2} />
+                  <Image
+                    src="/mainvisual/logo.svg"
+                    alt=""
+                    width={28}
+                    height={28}
+                    className={styles.brandLogo}
+                  />
                 </span>
                 <span className={styles.brandText}>株式会社きっかけ</span>
               </div>
