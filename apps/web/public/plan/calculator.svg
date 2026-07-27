@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="34.667" height="45.527" viewBox="0 0 34.667 45.527">
+  <g id="calculator" transform="translate(-61.068)">
+    <path id="パス_370" data-name="パス 370" d="M89.9,0H66.9a5.836,5.836,0,0,0-5.83,5.829V39.7a5.836,5.836,0,0,0,5.829,5.83H89.9a5.836,5.836,0,0,0,5.83-5.83V5.829A5.836,5.836,0,0,0,89.9,0ZM63.983,5.829A2.915,2.915,0,0,1,66.9,2.915H89.9A2.915,2.915,0,0,1,92.82,5.829V39.7A2.915,2.915,0,0,1,89.9,42.612H66.9A2.915,2.915,0,0,1,63.983,39.7Z" fill="#f57f6a"/>
+    <path id="パス_381" data-name="パス 381" d="M0,0H25.782V1.325H0Z" transform="translate(65.51 17.95)" fill="#f57f6a"/>
+    <path id="パス_371" data-name="パス 371" d="M160.856,87.133h-20.58v6.536h20.58Z" transform="translate(-72.165 -79.385)" fill="#f57f6a"/>
+    <path id="パス_372" data-name="パス 372" d="M146.022,245.332h-4.774v3.84h4.774v-3.826h0Z" transform="translate(-73.05 -223.517)" fill="#f57f6a"/>
+    <path id="パス_380" data-name="パス 380" d="M0,0H4.773V3.84H0Z" transform="translate(76.015 21.815)" fill="#f57f6a"/>
+    <path id="パス_373" data-name="パス 373" d="M321.841,245.332h-4.773v3.84h4.773v-3.826h0Z" transform="translate(-233.236 -223.517)" fill="#f57f6a"/>
+    <path id="パス_374" data-name="パス 374" d="M146.022,316.851h-4.774v3.84h4.774v-3.825h0Z" transform="translate(-73.05 -288.677)" fill="#f57f6a"/>
+    <path id="パス_379" data-name="パス 379" d="M0,0H4.773V3.84H0Z" transform="translate(76.015 28.174)" fill="#f57f6a"/>
+    <path id="パス_375" data-name="パス 375" d="M321.841,316.851h-4.773v3.84h4.773v-3.825h0Z" transform="translate(-233.236 -288.677)" fill="#f57f6a"/>
+    <path id="パス_376" data-name="パス 376" d="M146.022,388.385v-.014h-4.774v3.84h4.774v-3.826Z" transform="translate(-73.05 -353.837)" fill="#f57f6a"/>
+    <path id="パス_378" data-name="パス 378" d="M0,0H4.773V3.84H0Z" transform="translate(76.015 34.534)" fill="#f57f6a"/>
+    <path id="パス_377" data-name="パス 377" d="M321.841,388.385v-.014h-4.773v3.84h4.773v-3.826Z" transform="translate(-233.236 -353.837)" fill="#f57f6a"/>
+  </g>
+</svg>
