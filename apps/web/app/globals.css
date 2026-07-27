@@ -208,6 +208,8 @@
   animation: marquee 30s linear infinite;
 }
 
+
+
 /* Adding continuous scroll animations for testimonials */
 @keyframes scroll-left {
   0% {

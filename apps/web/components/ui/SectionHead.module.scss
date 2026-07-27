@@ -1,0 +1,66 @@
+@use "../../styles/variable" as *;
+@use "../../styles/mixin" as *;
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+    @include md {
+      gap: 8px;
+  }
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
+  color: #111111;
+  font-size: 1.4rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  line-height: 1;
+  @include md {
+    font-size: 1.2rem;
+  }
+}
+
+.eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-right: 8px;
+  border-radius: 9999px;
+  background: #f57f6a;
+  flex-shrink: 0;
+      @include md {
+          width: 8px;
+  height: 8px;
+  }
+}
+
+.accent {
+  color: #f57f6a;
+}
+
+.title {
+  margin: 0;
+  color: #111111;
+  font-size: 4.8rem;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: 0.04em;
+    @include md {
+    font-size: 2.4rem;
+  }
+}
+
+.left {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.center {
+  align-items: center;
+  text-align: center;
+}
