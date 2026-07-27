@@ -2,4 +2,203 @@
 @use "../../../styles/mixin" as *;
 
 .section {
+  background: #f9f3ee;
+}
+
+.inner {
+  margin: 0 auto;
+}
+
+.lead {
+  margin-top: 48px;
+  text-align: center;
+}
+
+.leadMain {
+  margin: 0;
+  color: #111111;
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 1.6;
+  letter-spacing: 0.04em;
+}
+
+.leadSub {
+  margin: 24px 0 0;
+  color: #111111;
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 2;
+  letter-spacing: 0.04em;
+}
+
+.leadSub span {
+  color: #f57f6a;
+}
+
+.form {
+  margin-top: 48px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 118px;
+  align-items: center;
+}
+
+.row + .row {
+  margin-top: 24px;
+}
+
+.labelGroup {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.label {
+  color: $color2;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.required {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 16px;
+  border-radius: 80px;
+  background: #f57f6a;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.field {
+  width: 100%;
+  height: 64px;
+  padding: 16px 20px;
+  border: 2px solid #f7b8aa;
+  border-radius: 4px;
+  background: #ffffff;
+  color: #111111;
+  font-size: 1.6rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  outline: none;
+  appearance: none;
+}
+
+.field::placeholder {
+  color: #d1cbc5;
+}
+
+.field:focus {
+  border-color: #f57f6a;
+}
+
+.selectWrap {
+  position: relative;
+}
+
+.selectWrap::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 22px;
+  width: 10px;
+  height: 10px;
+  border-right: 1.5px solid #f57f6a;
+  border-bottom: 1.5px solid #f57f6a;
+  transform: translateY(-60%) rotate(45deg);
+  pointer-events: none;
+}
+
+.submit {
+  margin-top: 48px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@include xl {
+  .leadMain {
+    font-size: 3.2rem;
+  }
+
+  .leadSub {
+    font-size: 1.8rem;
+  }
+
+}
+
+@include lg {
+  .inner {
+    max-width: 760px;
+  }
+
+  .row {
+    grid-template-columns: 180px minmax(0, 1fr);
+    gap: 20px;
+  }
+
+  .label {
+    font-size: 1.4rem;
+  }
+
+  .field {
+    height: 58px;
+    font-size: 1.6rem;
+  }
+
+ 
+}
+
+@include md {
+  .lead {
+    margin-top: 36px;
+  }
+
+  .leadMain {
+    font-size: 2.4rem;
+  }
+
+  .leadSub {
+    margin-top: 20px;
+    font-size: 1.5rem;
+    line-height: 1.9;
+  }
+
+  .form {
+    margin-top: 40px;
+  }
+
+  .row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .row + .row {
+    margin-top: 16px;
+  }
+
+  .labelGroup {
+    justify-content: flex-start;
+  }
+
+  .label {
+    font-size: 1.6rem;
+  }
+
+  .field {
+    height: 54px;
+    padding: 0 14px;
+    font-size: 1.5rem;
+  }
+
+  .submit {
+    margin-top: 34px;
+  }
 }

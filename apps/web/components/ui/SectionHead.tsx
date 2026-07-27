@@ -6,6 +6,7 @@ type SectionHeadProps = {
   ja: string
   align?: "left" | "center"
   className?: string
+  showDot?: boolean
 }
 
 export default function SectionHead({
@@ -13,6 +14,7 @@ export default function SectionHead({
   ja,
   align = "left",
   className,
+  showDot = true,
 }: SectionHeadProps) {
   const [first, ...rest] = en
 
@@ -24,7 +26,7 @@ export default function SectionHead({
         className,
       )}
     >
-      <p className={styles.eyebrow}>
+      <p className={cn(styles.eyebrow, !showDot && styles.noDot)}>
         <span className={styles.accent}>{first}</span>
         {rest.join("")}
       </p>

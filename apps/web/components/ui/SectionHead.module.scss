@@ -39,6 +39,10 @@
   }
 }
 
+.noDot::before {
+  display: none;
+}
+
 .accent {
   color: #f57f6a;
 }
