@@ -1,4 +1,16 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "ignoreCommand": "if [ \"$VERCEL_GIT_COMMIT_REF\" = \"main\" ] || [ \"$VERCEL_GIT_COMMIT_REF\" = \"develop\" ]; then exit 1; else exit 0; fi"
+  "git": {
+    "deploymentEnabled": {
+      "*": false,
+      "main": true,
+      "develop": true
+    }
+  },
+  "crons": [
+    {
+      "path": "/api/cron/task-activations",
+      "schedule": "* * * * *"
+    }
+  ]
 }
