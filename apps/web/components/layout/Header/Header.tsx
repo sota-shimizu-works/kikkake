@@ -20,6 +20,8 @@ const navItems = [
   { href: "#questions", label: "よくある質問" },
 ];
 
+const CLOSE_DURATION = 300;
+
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -61,7 +63,9 @@ export default function Header() {
     setIsMobileMenuVisible(true);
     setIsMobileMenuClosing(false);
     requestAnimationFrame(() => {
-      setIsMobileMenuOpen(true);
+      requestAnimationFrame(() => {
+        setIsMobileMenuOpen(true);
+      });
     });
   };
 
@@ -71,7 +75,7 @@ export default function Header() {
     window.setTimeout(() => {
       setIsMobileMenuVisible(false);
       setIsMobileMenuClosing(false);
-    }, 320);
+    }, CLOSE_DURATION);
   };
 
   const toggleMobileMenu = () => {
@@ -82,6 +86,8 @@ export default function Header() {
 
     openMobileMenu();
   };
+
+  const isMenuActive = isMobileMenuVisible && !isMobileMenuClosing;
 
   return (
     <>
@@ -111,10 +117,7 @@ export default function Header() {
             </span>
           </Link>
 
-          <nav
-            className={styles.desktopNav}
-            aria-label="グローバルナビゲーション"
-          >
+          <nav className={styles.desktopNav} aria-label="グローバルナビゲーション">
             {navItems.map((item) => (
               <Link
                 key={item.href}
@@ -145,48 +148,55 @@ export default function Header() {
           </Link>
 
           <button
+            type="button"
             onClick={toggleMobileMenu}
             className={cn(styles.menuButton, {
-              [styles.menuButtonActive]:
-                isMobileMenuVisible && !isMobileMenuClosing,
+              [styles.menuButtonActive]: isMenuActive,
             })}
-            aria-label={
-              isMobileMenuVisible && !isMobileMenuClosing
-                ? "メニューを閉じる"
-                : "メニューを開く"
-            }
-            aria-expanded={isMobileMenuVisible && !isMobileMenuClosing}
+            aria-label={isMenuActive ? "メニューを閉じる" : "メニューを開く"}
+            aria-expanded={isMenuActive}
           >
-            {isMobileMenuVisible && !isMobileMenuClosing ? (
-              <X className={styles.menuIcon} />
-            ) : (
-              <Menu className={styles.menuIcon} />
-            )}
+            <span className={styles.menuIconWrap}>
+              <Menu
+                className={cn(styles.menuIcon, styles.menuBars, {
+                  [styles.menuBarsHidden]: isMenuActive,
+                })}
+              />
+              <X
+                className={cn(styles.menuIcon, styles.menuClose, {
+                  [styles.menuCloseVisible]: isMenuActive,
+                })}
+              />
+            </span>
           </button>
         </div>
       </header>
 
       {isMobileMenuVisible && (
         <div
-          className={`${styles.mobileOverlay} ${
-            isMobileMenuClosing ? styles.mobileOverlayClosing : ""
-          }`}
+          className={cn(styles.mobileOverlay, {
+            [styles.mobileOverlayClosing]: isMobileMenuClosing,
+          })}
         >
           <div
-            className={`${styles.mobilePanel} ${
-              isMobileMenuClosing ? styles.mobilePanelClosing : ""
-            } ${isMobileMenuOpen ? styles.mobilePanelOpen : ""}`}
+            className={cn(styles.mobilePanel, {
+              [styles.mobilePanelClosing]: isMobileMenuClosing,
+              [styles.mobilePanelOpen]: isMobileMenuOpen,
+            })}
           >
-            <nav
-              className={styles.mobileNav}
-              aria-label="モバイルナビゲーション"
-            >
-              {navItems.map((item) => (
+            <nav className={styles.mobileNav} aria-label="モバイルナビゲーション">
+              {navItems.map((item, index) => (
                 <Link
                   key={item.href}
                   href={item.href}
                   onClick={(e) => handleNavClick(e, item.href)}
                   className={styles.mobileNavLink}
+                  style={{
+                    transitionDelay:
+                      isMobileMenuOpen && !isMobileMenuClosing
+                        ? `${90 + index * 38}ms`
+                        : "0ms",
+                  }}
                 >
                   {item.label}
                 </Link>
@@ -203,13 +213,22 @@ export default function Header() {
         </div>
       )}
 
-      {isMobileMenuVisible && !isMobileMenuClosing && (
+      {isMenuActive && (
         <button
+          type="button"
           onClick={closeMobileMenu}
           className={styles.floatingMenuButton}
           aria-label="メニューを閉じる"
         >
-          <X className={styles.menuIcon} />
+          <span className={styles.menuIconWrap}>
+            <X
+              className={cn(
+                styles.menuIcon,
+                styles.menuClose,
+                styles.menuCloseVisible,
+              )}
+            />
+          </span>
         </button>
       )}
     </>
