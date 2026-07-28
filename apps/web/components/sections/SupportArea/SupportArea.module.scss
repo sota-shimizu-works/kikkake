@@ -2,4 +2,290 @@
 @use "../../../styles/mixin" as *;
 
 .section {
+    padding-bottom: 100px;
+    @include md {
+        padding-bottom: 80px;
+    }
+}
+
+.container {
+    width: 100%;
+    // max-width: 1920px;
+    // margin: 0 auto;
+    padding: 0 180px;
+    @media (max-width: 1499px) {
+        padding: 0 64px;
+    }
+    @include lg {
+        padding: 0 40px;
+    }
+    @include sp {
+        padding: 0 20px;
+    }
+}
+.supportContent {
+    --slide-count: 4;
+    --active-index: 0;
+    --support-content-height: 400vh;
+    --thumb-active-y: 0;
+}
+
+.supportElevator {
+    display: none;
+}
+// 1024px以下で表示されるコンテンツ（1025以上は非表示）
+.mobileArea {
+    display: block;
+    .mobileList {
+        display: grid;
+        gap: 64px;
+    }
+}
+
+.sectionHead {
+    margin-bottom: 64px;
+    opacity: 1;
+    transform: none;
+    animation: none !important;
+    transition: none !important;
+    * {
+        opacity: 1;
+        transform: none;
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+.headingTitle {
+    margin: 0;
+    color: $color2;
+    font-size: 3.2rem;
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: 0.04em;
+    margin-bottom: 32px;
+}
+
+.slideText {
+    margin: 0;
+    color: $color2;
+    font-size: 1.8rem;
+    font-weight: 500;
+    line-height: 1.9;
+    letter-spacing: 0.04em;
+}
+.slideImage {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+    aspect-ratio: 16 / 9;
+    @include sp {
+        aspect-ratio: 4 / 3;
+    }
+    image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+@include lg {
+    .headingTitle {
+        font-size: 1.8rem;
+        margin-bottom: 16px;
+    }
+
+    .slideText {
+        font-size: 1.6rem;
+        margin-bottom: 24px;
+    }
+}
+// 画面幅1025px以上でのスライドの挙動のcss
+@media screen and (min-width: 1025px) {
+    .supportElevator {
+        display: block;
+        position: relative;
+        min-height: var(--support-content-height);
+        cursor: default;
+    }
+
+    .mobileArea {
+        display: none;
+    }
+
+    .stickyArea {
+        display: grid;
+        grid-template-columns: minmax(0, 0.92fr) minmax(360px, 1.2fr);
+        gap: clamp(28px, 4vw, 48px);
+        align-items: center;
+        position: sticky;
+        top: 0;
+        min-height: 100vh;
+        z-index: 1;
+    }
+
+    .copyArea {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 100vh;
+    }
+
+    .imageArea {
+        display: flex;
+        gap: 28px;
+        align-items: center;
+    }
+
+    .copyStack {
+        position: relative;
+        min-height: 240px;
+    }
+
+    .slideCopy {
+        position: absolute;
+        width: 100%;
+        inset: 0 auto auto 0;
+        width: min(100%, 470px);
+        opacity: 0;
+        pointer-events: none;
+        transform: translate3d(80px, 0, 0);
+        transition:
+            transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+            opacity 0.45s ease;
+        & > * {
+            opacity: 0;
+            transform: translate3d(34px, 0, 0);
+            transition:
+                transform 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+                opacity 0.55s ease;
+        }
+
+        & > *:nth-child(2) {
+            transition-delay: 0.04s;
+        }
+        & > *:nth-child(3) {
+            transition-delay: 0.08s;
+        }
+        &.isPrevious {
+            transform: translate3d(-80px, 0, 0);
+        }
+        &.isCurrent {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translate3d(0, 0, 0);
+            transition-duration: 0.65s;
+        }
+        &.isCurrent > * {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+    .imageStage {
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        aspect-ratio: 4 / 3;
+        width: 100%;
+        max-height: calc(100vh - 120px);
+        background: $color7;
+        .imagePanel {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            clip-path: polygon(0 100%, 100% 100%, 100% var(--clip-edge), 0 var(--clip-edge));
+            will-change: clip-path;
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transform: translate3d(0, var(--image-y), 0) scale(var(--image-scale));
+                transform-origin: center center;
+                will-change: transform;
+            }
+        }
+    }
+    .thumbNav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        gap: 10px;
+        min-height: 100vh;
+        ul {
+            display: flex;
+            flex-direction: column;
+
+            gap: 12px;
+        }
+        .thumbButton {
+            display: block;
+            border: 1px solid $color1;
+            border-radius: 4px;
+            width: 40px;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            padding: 0;
+            overflow: hidden;
+            opacity: 0.3;
+            background: none;
+            cursor: pointer;
+            transition: opacity 0.35s ease;
+            .scrollArea {
+                margin-top: -100vh;
+                pointer-events: none;
+            }
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+        .thumbButton.isCurrent,
+        .thumbButton:hover,
+        .thumbButton:focus-visible {
+            opacity: 1;
+        }
+    }
+
+    .scrollSection {
+        min-height: 100vh;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .supportElevator {
+        display: none;
+    }
+
+    .mobileList {
+        display: grid;
+    }
+}
+
+.sectionCatchcopy {
+    text-align: center;
+    font-size: 2.8rem;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.6;
+    color: $color6;
+    margin-top: 56px;
+    @include lg {
+        margin-top: 80px;
+    }
+    @include md {
+        margin-top: 56px;
+        font-size: 2.4rem;
+    }
+    // @include sp {
+    //     font-size: 2rem;
+    // }
+    .hidden {
+        display: none;
+        @include sp {
+            display: inline-block;
+        }
+    }
 }
