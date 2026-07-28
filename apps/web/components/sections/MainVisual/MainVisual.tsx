@@ -12,7 +12,15 @@ export default function MainVisual() {
           alt="経営支援のイメージ"
           fill
           priority
-          className={styles.backgroundImage}
+          className={`${styles.backgroundImage} ${styles.desktopImage}`}
+          sizes="100vw"
+        />
+        <Image
+          src="/mainvisual/mainvisual_sp.png"
+          alt=""
+          fill
+          priority
+          className={`${styles.backgroundImage} ${styles.mobileImage}`}
           sizes="100vw"
         />
         <div className={styles.overlay} />

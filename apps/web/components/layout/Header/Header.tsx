@@ -74,6 +74,15 @@ export default function Header() {
     }, 320);
   };
 
+  const toggleMobileMenu = () => {
+    if (isMobileMenuVisible && !isMobileMenuClosing) {
+      closeMobileMenu();
+      return;
+    }
+
+    openMobileMenu();
+  };
+
   return (
     <>
       <header
@@ -136,11 +145,23 @@ export default function Header() {
           </Link>
 
           <button
-            onClick={openMobileMenu}
-            className={styles.menuButton}
-            aria-label="メニューを開く"
+            onClick={toggleMobileMenu}
+            className={cn(styles.menuButton, {
+              [styles.menuButtonActive]:
+                isMobileMenuVisible && !isMobileMenuClosing,
+            })}
+            aria-label={
+              isMobileMenuVisible && !isMobileMenuClosing
+                ? "メニューを閉じる"
+                : "メニューを開く"
+            }
+            aria-expanded={isMobileMenuVisible && !isMobileMenuClosing}
           >
-            <Menu className="h-5 w-5" />
+            {isMobileMenuVisible && !isMobileMenuClosing ? (
+              <X className={styles.menuIcon} />
+            ) : (
+              <Menu className={styles.menuIcon} />
+            )}
           </button>
         </div>
       </header>
@@ -154,30 +175,8 @@ export default function Header() {
           <div
             className={`${styles.mobilePanel} ${
               isMobileMenuClosing ? styles.mobilePanelClosing : ""
-            }`}
+            } ${isMobileMenuOpen ? styles.mobilePanelOpen : ""}`}
           >
-            <div className={styles.mobileHeader}>
-              <div className={styles.brand}>
-                <span className={styles.brandMark} aria-hidden="true">
-                  <Image
-                    src="/mainvisual/logo.svg"
-                    alt=""
-                    width={28}
-                    height={28}
-                    className={styles.brandLogo}
-                  />
-                </span>
-              </div>
-
-              <button
-                onClick={closeMobileMenu}
-                className={styles.closeButton}
-                aria-label="メニューを閉じる"
-              >
-                <X className="h-5 w-5" />
-              </button>
-            </div>
-
             <nav
               className={styles.mobileNav}
               aria-label="モバイルナビゲーション"
@@ -194,24 +193,24 @@ export default function Header() {
               ))}
             </nav>
 
-            <Link
-              href="#contact"
-              onClick={(e) => handleNavClick(e, "#contact")}
-              className={styles.mobileContactButton}
-            >
-              <span>お問い合わせ</span>
-              <span className={styles.mobileContactIcon} aria-hidden="true">
-                <Image
-                  src="/mainvisual/mail_icon.svg"
-                  alt=""
-                  width={20}
-                  height={20}
-                  className={styles.contactIconImage}
-                />
+            <Link href="tel:08001230877" className={styles.mobileContactButton}>
+              <span className={styles.mobileContactBadge}>
+                お電話でのお問い合わせ
               </span>
+              <span className={styles.mobileContactTel}>TEL : 08001230877</span>
             </Link>
           </div>
         </div>
+      )}
+
+      {isMobileMenuVisible && !isMobileMenuClosing && (
+        <button
+          onClick={closeMobileMenu}
+          className={styles.floatingMenuButton}
+          aria-label="メニューを閉じる"
+        >
+          <X className={styles.menuIcon} />
+        </button>
       )}
     </>
   );
