@@ -29,7 +29,7 @@ const supportContentItems = [
   }
 ]
 
-// stickyスクロール連動アニメーション処理の概要
+// ##stickyスクロール連動アニメーション処理の概要##
 // SupportArea内にスライド数分の縦長のスクロール領域を作っています。
 // その各領域が画面中央に来たタイミングで、現在のスライド番号を更新します。現在のスライド番号が変わると、タイトルと本文の表示クラスが切り替わり、
 // 前の内容は横に抜けてフェードアウトし、新しい内容は横から入ってフェードインします。
@@ -38,8 +38,8 @@ const supportContentItems = [
 // スクロール進行度に応じて次の画像のマスク位置を変え、下から上へ画像が現れるように見せています。
 // 同時に画像の拡大率と少しの上下移動はスクロール進行度から計算しています。
 
-// 画面幅が1024px以下の場合や、ユーザーがOS側で「視覚効果を減らす」設定にしている場合は、このスクロール連動処理を止めています。
-// その場合は通常の縦並び表示になり、各項目が普通にスクロールで読めるようになります。
+// 画面幅が1024px以下の場合このスクロール連動処理を止めています。
+// その場合は通常の縦並び表示になり、スクロールで読めるようになります。
 
 // 画像のマスクや拡大率の計算のためスクロール進行度を必ず0〜1の範囲に収めるための関数
 const clamp = (value: number) => Math.max(0, Math.min(1, value))
@@ -58,14 +58,12 @@ export default function SupportArea() {
   useEffect(() => {
     // 画面幅1025px以上をデスクトップとしてstickyareaの挙動を行う
     const desktopQuery = window.matchMedia("(min-width: 1025px)")
-    // OSやブラウザで「アニメーションを減らす」設定を有効にしているかを調べる
-    const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)")
     let frameId = 0
     // スクロールイベントやリサイズイベントに応じて状態を更新する関数
     const update = () => {
       frameId = 0
-      // ルート要素が存在しない、デスクトップでない、またはアニメーションを減らす設定が有効な場合は、アクティブインデックスと進捗状況をリセットする
-      if (!rootRef.current || !desktopQuery.matches || reduceMotionQuery.matches) {
+      // ルート要素が存在しない、またはデスクトップでない場合は、アクティブインデックスと進捗状況をリセットする
+      if (!rootRef.current || !desktopQuery.matches) {
         setActiveIndex(0)
         setProgresses(supportContentItems.map(() => 0))
         return
@@ -127,8 +125,6 @@ export default function SupportArea() {
     window.addEventListener("resize", requestUpdate)
     // デスクトップ判定のメディアクエリに応じて、再計算を行う
     desktopQuery.addEventListener("change", requestUpdate)
-    // アニメーションを減らす設定のメディアクエリの変更イベントに応じて、再計算を行う
-    reduceMotionQuery.addEventListener("change", requestUpdate)
     // クリーンアップ関数を返して、イベントリスナーを削除する
     return () => {
       // requestAnimationFrameのキャンセルとイベントリスナーの削除
@@ -139,7 +135,6 @@ export default function SupportArea() {
       window.removeEventListener("scroll", requestUpdate)
       window.removeEventListener("resize", requestUpdate)
       desktopQuery.removeEventListener("change", requestUpdate)
-      reduceMotionQuery.removeEventListener("change", requestUpdate)
     }
   }, [])
   // スライドのインデックスに基づいてスクロールする関数

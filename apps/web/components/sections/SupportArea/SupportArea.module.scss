@@ -270,16 +270,6 @@
     }
 }
 
-@media (prefers-reduced-motion: reduce) {
-    .supportElevator {
-        display: none;
-    }
-
-    .mobileList {
-        display: grid;
-    }
-}
-
 .sectionCatchcopy {
     text-align: center;
     font-size: 2.8rem;
