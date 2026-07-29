@@ -182,10 +182,11 @@ export default function SupportArea() {
                         ? 1
                         : progresses[index - 1] ?? (index <= activeIndex ? 1 : 0)
                     const ownProgress = progresses[index] ?? 0
-                    const enteringScale = 1.12 - reveal * 0.12
-                    const imageScale =
-                      index > activeIndex ? enteringScale : 1 + ownProgress * 0.1
-                    const imageY = index > activeIndex ? 0 : ownProgress * -20
+                    const isEntering = index > 0 && reveal < 1
+                    const imageScale = isEntering
+                      ? 1 + (1 - reveal) * 0.04
+                      : 1 + ownProgress * 0.04
+                    const imageY = isEntering ? 0 : ownProgress * -8
 
                     return (
                       <div
@@ -255,11 +256,14 @@ export default function SupportArea() {
             <div className={styles.mobileList}>
               {supportContentItems.map((item, index) => (
                 <div key={index} className={styles.mobileListItem}>
-                  <h3 className={styles.headingTitle}>{item.title}</h3>
-                  <p className={styles.slideText}>{item.text}</p>
                   <div className={styles.slideImage}>
                     <Image src={item.image} alt={item.title} width={708} height={531} />
                   </div>
+                  <div className={styles.slideCopy}>
+                    <h3 className={styles.headingTitle}>{item.title}</h3>
+                    <p className={styles.slideText}>{item.text}</p>
+                  </div>
+
                 </div>
               ))}
             </div>
@@ -267,7 +271,7 @@ export default function SupportArea() {
         </div>
         <h3 className={styles.sectionCatchcopy}>
           「きっかけ」をつくり、未来をひらく。<br />
-          私たちは、事業の成長に<br className={styles.hidden}/>伴走するパートナーです。
+          私たちは、事業の成長に<br className={styles.hidden} />伴走するパートナーです。
         </h3>
       </div>
     </section>

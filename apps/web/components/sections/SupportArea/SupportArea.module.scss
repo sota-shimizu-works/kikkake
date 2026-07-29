@@ -12,7 +12,10 @@
     width: 100%;
     // max-width: 1920px;
     // margin: 0 auto;
-    padding: 0 180px;
+    padding: 0 160px;
+       @media (max-width: 1799px) {
+        padding: 0 100px;
+    }
     @media (max-width: 1499px) {
         padding: 0 64px;
     }
@@ -64,21 +67,23 @@
     line-height: 1.35;
     letter-spacing: 0.04em;
     margin-bottom: 32px;
+    @include lg {
+        font-size: 2.4rem;
+        margin-bottom: 16px;
+    }
+    @include md {
+        font-size: 2rem;
+    }
 }
 
-.slideText {
-    margin: 0;
-    color: $color2;
-    font-size: 1.8rem;
-    font-weight: 500;
-    line-height: 1.9;
-    letter-spacing: 0.04em;
-}
 .slideImage {
     width: 100%;
     overflow: hidden;
     border-radius: 10px;
     aspect-ratio: 16 / 9;
+    @include lg {
+        margin-bottom: 24px;
+    }
     @include sp {
         aspect-ratio: 4 / 3;
     }
@@ -88,15 +93,26 @@
         object-fit: cover;
     }
 }
-@include lg {
-    .headingTitle {
-        font-size: 1.8rem;
-        margin-bottom: 16px;
+.slideCopy {
+    @include lg {
+        padding: 0 32px;
     }
-
+    @include md {
+        padding: 0 24px;
+    }
+       @include sp {
+        padding: 0 16px;
+    }
     .slideText {
-        font-size: 1.6rem;
-        margin-bottom: 24px;
+        margin: 0;
+        color: $color2;
+        font-size: 1.8rem;
+        font-weight: 500;
+        line-height: 1.9;
+        letter-spacing: 0.04em;
+        @include lg {
+            font-size: 1.6rem;
+        }
     }
 }
 // 画面幅1025px以上でのスライドの挙動のcss
@@ -184,7 +200,7 @@
     .imageStage {
         position: relative;
         overflow: hidden;
-        border-radius: 10px;
+        border-radius: 8px;
         aspect-ratio: 4 / 3;
         width: 100%;
         max-height: calc(100vh - 120px);
