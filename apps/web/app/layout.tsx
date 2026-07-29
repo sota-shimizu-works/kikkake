@@ -1,13 +1,13 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
-import { Inter_Tight } from "next/font/google"
+import { Noto_Sans_JP } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { MagneticCursor } from "@/components/ui/magnetic-cursor"
 import "./globals.css"
 
-const interTight = Inter_Tight({
+const notoSansJp = Noto_Sans_JP({
   subsets: ["latin"],
-  variable: "--font-inter-tight",
+  variable: "--font-noto-sans-jp",
 })
 
 export const metadata: Metadata = {
@@ -35,7 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${interTight.className} font-sans antialiased`}>
+      <body className={`${notoSansJp.className} font-sans antialiased`}>
         <MagneticCursor />
         {children}
         <Analytics />
