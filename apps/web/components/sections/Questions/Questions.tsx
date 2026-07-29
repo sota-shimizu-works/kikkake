@@ -49,7 +49,7 @@ export default function Questions() {
                   }
                 >
                   <div className={styles.circle}>
-                  <img src="/questions/icon-question.svg" alt="質問" />
+                    <img src="/questions/icon-question.svg" alt="質問" />
                   </div>
                   <p className={styles.title}>{item.title}</p>
                   <div className={styles.cross}>
