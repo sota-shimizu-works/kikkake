@@ -2,4 +2,140 @@
 @use "../../../styles/mixin" as *;
 
 .section {
+  padding: 100px 0;
+  @include md {
+    padding: 80px 0;
+  }
+  .container {
+    width: 100%;
+    max-width: 1920px;
+    margin: 0 auto;
+    padding: 0 180px;
+    @media (max-width: 1499px) {
+      padding: 0 64px;
+    }
+    @include lg {
+      padding: 0 40px;
+    }
+      @include sp {
+         padding: 0 20px;
+  }
+  }
+  .inner {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 40px;
+    @include md {
+      flex-direction: column;
+    }
+  }
+  .textBlock {
+    max-width: 500px;
+    flex: 1;
+    .text {
+      margin-bottom: 48px;
+      @include xl {
+        margin-bottom: 28px;
+      }
+      @include md {
+        text-align: center;
+      }
+      @include sp {
+        text-align: left;
+      }
+    }
+    .button {
+         @include md {
+margin: 0 auto;
+      }
+    }
+  }
+  .imageBlock {
+    width: 48%;
+    min-width: 580px;
+    @include xl {
+      min-width: 380px;
+    }
+    @include lg {
+      min-width: 280px;
+    }
+        @include md {
+      min-width: auto;
+      width: 80%;
+    }
+    @include sp {
+      width: 100%;
+    }
+    img {
+      display: block;
+      width: 100%;
+    }
+  }
+}
+
+.sectionTitle {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 40px;
+  @include xl {
+    margin-bottom: 28px;
+  }
+  @include md {
+align-items: center;
+    gap: 8px;
+  }
+  @include sp {
+    align-items: flex-start;
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    margin: 0;
+    color: #111111;
+    font-size: 1.4rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    line-height: 1;
+  }
+
+  .eyebrow::before {
+    content: "";
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 8px;
+    border-radius: 9999px;
+    background: #f57f6a;
+    flex-shrink: 0;
+    @include md {
+      width: 8px;
+      height: 8px;
+    }
+  }
+
+  .accent {
+    color: #f57f6a;
+  }
+
+  .title {
+    margin: 0;
+    color: #111111;
+    font-size: 2.8rem;
+    font-weight: 700;
+    line-height: 1.8;
+    letter-spacing: 0.1em;
+    @include xl {
+      font-size: 2rem;
+    }
+      @include md {
+      font-size: 2.4rem;
+      text-align: center;
+    }
+         @include sp {
+      font-size: 2rem;
+      text-align: left;
+    }
+  }
 }
