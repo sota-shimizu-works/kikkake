@@ -1,3 +1,6 @@
+@use "../../styles/variable" as *;
+@use "../../styles/mixin" as *;
+
 .button {
   display: flex;
   align-items: center;
@@ -6,8 +9,8 @@
   padding: 12px 12px 12px 18px;
   border: 0;
   border-radius: 6px;
-  background: #f57f6a;
-  color: #ffffff;
+  background: $color6;
+  color: $color1;
   font-size: 1.8rem;
   font-weight: 700;
   text-decoration: none;
@@ -31,7 +34,7 @@
   width: 40px;
   height: 40px;
   border-radius: 4px;
-  background: #ffffff;
+  background: $color1;
   flex-shrink: 0;
   img {
     width: auto;

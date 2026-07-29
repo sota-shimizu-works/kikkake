@@ -14,7 +14,7 @@
   display: inline-flex;
   align-items: center;
   margin: 0;
-  color: #111111;
+  color: $color2;
   font-size: 1.4rem;
   font-weight: 400;
   letter-spacing: 0.12em;
@@ -31,7 +31,7 @@
   height: 12px;
   margin-right: 8px;
   border-radius: 9999px;
-  background: #f57f6a;
+  background: $color6;
   flex-shrink: 0;
       @include md {
           width: 8px;
@@ -44,12 +44,12 @@
 }
 
 .accent {
-  color: #f57f6a;
+  color: $color6;
 }
 
 .title {
   margin: 0;
-  color: #111111;
+  color: $color2;
   font-size: 4.8rem;
   font-weight: 700;
   line-height: 1.15;

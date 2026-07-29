@@ -2,7 +2,7 @@
 @use "../../../styles/mixin" as *;
 
 .section {
-  background: #ffffff;
+  background: $color1;
 }
 
 .inner {
@@ -13,7 +13,7 @@
 .intro {
   margin: 64px 0 0;
   text-align: center;
-  color: #111111;
+  color: $color2;
   font-size: 1.6rem;
   font-weight: 500;
   line-height: 1.9;
@@ -39,7 +39,7 @@
 
 .lead {
   margin: 0;
-  color: #f57f6a;
+  color: $color6;
   font-size: 2.4rem;
   font-weight: 700;
   line-height: 1.5;
@@ -48,7 +48,7 @@
 
 .description {
   margin: 24px 0 0;
-  color: #111111;
+  color: $color2;
   font-size: 1.6rem;
   font-weight: 500;
   line-height: 1.9;
@@ -84,14 +84,13 @@
 .card {
   position: relative;
   padding: 32px;
-  border: 2px solid #eeeeee;
   border-radius: 12px;
-  background: #ffffff;
-  box-shadow: 0 8px 18px rgba(17, 17, 17, 0.04);
+  background: $color1;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.16);
 }
 
 .cardAccent {
-  background: #f9f3ee;
+  background: $color7;
 }
 
 .cardBadge {
@@ -104,8 +103,8 @@
   width: 120px;
   height: 120px;
   border-radius: 9999px;
-  background: #f57f6a;
-  color: #ffffff;
+  background: $color6;
+  color: $color1;
   text-align: center;
   font-size: 1.5rem;
   font-weight: 700;
@@ -116,7 +115,7 @@
 .cardTitle {
   margin: 0;
   text-align: center;
-  color: #111111;
+  color: $color2;
   font-size: 2.4rem;
   font-weight: 700;
   line-height: 1.35;
@@ -124,13 +123,13 @@
 }
 
 .cardTitle span {
-  color: #f57f6a;
+  color: $color6;
 }
 
 .cardLead {
   margin: 16px 0 0;
   text-align: center;
-  color: #111111;
+  color: $color2;
   font-size: 1.6rem;
   font-weight: 500;
   line-height: 1.6;
@@ -144,7 +143,7 @@
   align-items: center;
   margin-top: 24px;
   padding-top: 24px;
-  border-top: 1px dotted #f3d8cf;
+  border-top: 1px dotted $color6;
 }
 
 .freePriceBox,
@@ -160,11 +159,11 @@
 }
 
 .freePriceBox {
-  background: #f9f3ee;
+  background: $color7;
 }
 
 .supportPriceBox {
-  background: #ffffff;
+  background: $color1;
 }
 
 .freePriceIcon {
@@ -174,7 +173,7 @@
 
 .priceText {
   margin: 14px 0 0;
-  color: #111111;
+  color: $color2;
   font-size: 1.8rem;
   font-weight: 700;
   line-height: 1.4;
@@ -187,7 +186,7 @@
 
 .estimateText {
   margin: 14px 0 0;
-  color: #111111;
+  color: $color2;
   font-size: 1.4rem;
   font-weight: 500;
   line-height: 1.6;
@@ -206,7 +205,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  color: #111111;
+  color: $color2;
   font-size: 1.6rem;
   font-weight: 500;
   line-height: 1.7;
@@ -222,7 +221,7 @@
 .footerText {
   margin: 48px 0 0;
   text-align: center;
-  color: #111111;
+  color: $color2;
   font-size: 2.4rem;
   font-weight: 700;
   line-height: 1.6;
