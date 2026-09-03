@@ -6,7 +6,7 @@ import styles from "./About.module.scss"
 const principles = [
   {
     title: "Mission",
-    text: "営業を通して、人生に前向きなきっかけを届ける。",
+    text: "営業を通して、人生に前向きなきっかけを届ける",
     tone: "mission",
   },
   {
@@ -33,17 +33,17 @@ export default function About() {
               <p>人と企業に前向きな</p>
               <p>変化が生まれる</p>
               <p>
-                その<span>きっかけ</span>になることが、
+                その<span>きっかけ</span>になることが
               </p>
               <p>私たちの使命です</p>
             </div>
 
             <div className={styles.body}>
               <p>株式会社きっかけは、</p>
-              <p>営業を通して企業と人の可能性を広げる会社です</p>
+              <p>営業を通して企業と人の可能性を広げる会社です。</p>
               <p>私たちは、ただサービスを案内するだけではなく、</p>
-              <p>相手の状況を理解すること</p>
-              <p>支援を届けることを大切にしています</p>
+              <p>相手の状況を理解すること、</p>
+              <p>支援を届けることを大切にしています。</p>
             </div>
           </div>
 
