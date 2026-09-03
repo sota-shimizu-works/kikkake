@@ -6,17 +6,17 @@ import styles from "./About.module.scss"
 const principles = [
   {
     title: "Mission",
-    text: "1人ひとりの可能性を信じ、新しいきっかけを届ける。",
+    text: "営業を通して、人生に前向きなきっかけを届ける。",
     tone: "mission",
   },
   {
     title: "Vision",
-    text: "つながりを循環し、誰も挑戦できる社会へ",
+    text: "「いい営業マン」が、「いい会社」を創る",
     tone: "vision",
   },
   {
     title: "Value",
-    text: "誠実さを大切に多様性を尊重し、チームで成果を創る。",
+    text: "GiveFirstで動き、人の心に残る仕事をする",
     tone: "value",
   },
 ] as const
